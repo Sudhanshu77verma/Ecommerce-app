@@ -20,9 +20,9 @@ function Header() {
           </Link>
         </div>
 
-        <div className="hidden  lg:flex justify-center items-center max-w-sm border rounded-full focus-within:shadow ">
+        <div className="hidden lg:flex justify-center items-center  max-w-sm  rounded-full focus:outline-none ">
           <input
-            className="  text-lg border-none w-full pl-2"
+            className=" h-8 text-lg border-none w-full bg-slate-200    "
             type="text"
             placeholder="Search Product here..."
             id=""
