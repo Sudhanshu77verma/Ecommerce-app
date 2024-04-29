@@ -11,3 +11,12 @@ export const signout =async(req,res,next)=>{
         next(error)
     }
 } 
+
+
+export const alluser=async(req,res,next)=>{
+    try {
+        
+    } catch (error) {
+        next(error)
+    }
+}

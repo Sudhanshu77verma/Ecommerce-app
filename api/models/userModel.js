@@ -17,7 +17,13 @@ import mongoose from "mongoose"
     ProfilePic:{
         type:String,
       
- } }, {
+ },
+ role:{
+    type:String,
+ }
+
+
+}, {
     timestamps:true
  } )
 

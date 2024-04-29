@@ -8,7 +8,10 @@ import Footer from  "./components/Footer.jsx"
 import Login from './pages/Login.jsx'
 import ForgotPassword from './pages/ForgotPassword.jsx'
 import Signup from './pages/Signup.jsx'
+import AdminPanel from './pages/AdminPanel.jsx'
 import Context from './context/index.js'
+import AllUser from './pages/AllUser.jsx'
+import AllProduct from './pages/AllProduct.jsx'
 export default function App() {
  
 
@@ -40,7 +43,11 @@ export default function App() {
      <Route path='/login' element={<Login></Login>} ></Route>
      <Route path='/forgot-password' element={<ForgotPassword></ForgotPassword>}></Route>
       <Route path='/sign-up' element={<Signup></Signup>} ></Route>
-      
+      <Route path='/admin-panel' element={<AdminPanel></AdminPanel>}>
+        <Route path='all-users' element={<AllUser></AllUser>}></Route>
+        <Route path='all-products' element={<AllProduct></AllProduct>}></Route>
+         </Route>
+
       </Routes>
       </main>
   
