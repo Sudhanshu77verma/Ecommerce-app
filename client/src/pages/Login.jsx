@@ -1,19 +1,49 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import loginIcons from "../assest/signin.gif";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Context from "../context/index";
+import { useDispatch } from "react-redux";
+import { setuserDetails } from "../store/userslice";
+
 function Login() {
+  const dispatch =useDispatch()
   const [showPass, setShowpass] = useState(false);
+  const navigate=useNavigate()
   const [formdata, setformdata] = useState({ email: "", password: "" });
   console.log(formdata);
+
+
+  // const {fetchuserDetails}= useContext(Context)
   const handleOnchange = (e) =>
     setformdata((prev) => ({
       ...prev,
       [e.target.id]: e.target.value,
     }));
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async(e) => {
     e.preventDefault();
+
+    const res=await fetch('/api/user/signin', {
+      method:"POST",
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(formdata)
+    })
+
+    const data =await res.json();
+    if(data.success==false)
+    {
+       toast.error(data.message)
+    }
+    else{
+      console.log(data)
+      toast.success("Login successfully")
+
+      navigate('/')
+      dispatch(setuserDetails(data))
+      // fetchuserDetails()
+    }
   };
   return (
     <section id="login">

@@ -52,7 +52,7 @@ const [showconfPass,setconfirpass] =useState(false);
      const imagePic=await imageToabase(file)
      
    console.log(imagePic)
-    setformdata({name:formdata.name , email:formdata.email, password:formdata.password,confirmPassword:formdata.confirmPassword, ProfilePic: imagePic})
+    setformdata({ ...formdata, ProfilePic: imagePic})
    
   }
 
