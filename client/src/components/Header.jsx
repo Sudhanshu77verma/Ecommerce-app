@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { setuserDetails } from "../store/userslice";
+import ROLE from "../common/role";
 
 function Header() {
 
@@ -56,7 +57,7 @@ dispatch(setuserDetails(null))
                  <div className="relative group flex flex-col items-center ">
                  <div className="text-3xl relative hover:cursor-pointer " onClick={()=>setdisplay(prev=>!prev)}>
                   {
-                  user ? (
+                  user?.ProfilePic ? (
                     <img src={user.ProfilePic} className="w-8 h-8 rounded-full" alt="" />
                   ) :(<FaRegCircleUser></FaRegCircleUser> )
                   
@@ -68,8 +69,14 @@ dispatch(setuserDetails(null))
                   display &&(
                   
                     <div className="absolute w-32 h-fit top-8  bg-white shadow-lg rounded-md px-2  hidden group-hover:block text-center">
-                 <nav>
-                 <Link to={'/admin-panel'} className=" hidden md:block text-slate-500 whitespace-nowrap hover:bg-slate-100 "> Admin Panel </Link>
+                 <nav> 
+                  {
+                    user?.role === ROLE.ADMIN && (
+                      <Link to={'/admin-panel'} className=" hidden md:block text-slate-500 whitespace-nowrap hover:bg-slate-100 "> Admin Panel </Link>
+                    )
+                  }
+
+
                  </nav>
                    </div>
                  

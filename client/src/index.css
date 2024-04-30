@@ -10,3 +10,13 @@ body{
     border: none;
     box-shadow:5px 0px 8px rgb(0,0,0,0.1)  ;
 }
+
+.userTable {
+    @apply bg-white
+}
+.userTable th{
+    @apply border  text-base font-medium 
+}
+.userTable td{
+    @apply border  text-base text-center
+}

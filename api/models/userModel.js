@@ -15,13 +15,12 @@ import mongoose from "mongoose"
         required:true,
     },
     ProfilePic:{
-        type:String,
-      
- },
- role:{
+        type:String,    
+    },
+    role:{
     type:String,
+    required:true
  }
-
 
 }, {
     timestamps:true
