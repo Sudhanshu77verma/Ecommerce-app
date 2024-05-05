@@ -3,6 +3,9 @@ import UploadProduct from '../components/UploadProduct'
 
 function AllProduct() {  
   const [openUploadProduct , setopenUpload]= useState(false)
+
+
+  
   return (
     <div>
       <div className='bg-white py-2 px-4 flex justify-between items-center '>
@@ -13,7 +16,14 @@ function AllProduct() {
       { openUploadProduct &&
  <UploadProduct onclose={()=>setopenUpload(false)}></UploadProduct>
       }
-      
+
+
+
+
+
+
+
+
     </div>
   )
 }

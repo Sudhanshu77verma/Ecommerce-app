@@ -16,4 +16,6 @@ router.get('/userlogout',signout)
 router.get('/all-users',verifyToken,alluser)
 
 router.post('/update-user',verifyToken,updateUser)
+
+
 export default router

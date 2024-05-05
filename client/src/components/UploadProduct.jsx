@@ -3,7 +3,8 @@ import { IoMdClose } from "react-icons/io";
 import ProductCategory from "../helpers/Product";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import uploadImage from "../helpers/uploadimage";
-import Displayimage from "./Displayimage";
+import { toast } from "react-toastify";
+
 function UploadProduct({ onclose }) {
   const [data, setdata] = useState({
     productName: "",
@@ -27,6 +28,22 @@ function UploadProduct({ onclose }) {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
+    const res= await fetch('/api/product/upload-product',{
+      method:"POST",
+      headers:{
+        'content-type' :'application/json'
+      },
+      body:JSON.stringify(data)
+
+
+    })
+
+    const ResponseData= await res.json();
+    if(ResponseData.success)
+      {
+        toast.success(ResponseData.message)
+        onclose()
+      }
   };
 
   const handleUpload = async (e) => {
@@ -165,9 +182,8 @@ function UploadProduct({ onclose }) {
           <button className=" mt-5 pb-5 w-full  bg-red-500 h-10 text-center text-white font-semibold hover:bg-red-700 hover:scale-90 hover:text-black transition-all duration-200 text-xl rounded-full pt-1 ">
             Upload Product
           </button>
+          
         </form>
-
-        <Displayimage></Displayimage>
       </div>
     </div>
   );
