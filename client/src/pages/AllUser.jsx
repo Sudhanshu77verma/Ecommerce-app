@@ -34,7 +34,7 @@ function AllUser() {
 
   return (
     <div>
-      <table className="w-full   userTable">
+      <table className="w-full userTable">
         <thead>
           <tr className="bg-black text-white">
             <th>Sr.</th>

@@ -20,11 +20,11 @@ function AdminPanel() {
       }
     },[user])
   return (
-    <div className='h-[calc(100vh-120px)] md:flex hidden '>
+    <div className='h-full md:flex hidden '>
         
-        <aside className='h-full w-full max-w-60 bg-white customshadow' >
+        <aside className=' h-screen w-full  max-w-60 bg-white customshadow' >
 
-       <div className='h-24  flex justify-center items-center flex-col pt-10 '>
+       <div className='  flex justify-center items-center flex-col pt-10 '>
    
        <div className="text-3xl relative hover:cursor-pointer flex justify-center items-center ">
                   {
@@ -36,12 +36,12 @@ function AdminPanel() {
                   }
                  </div>
           <p className='capitalize text-lg font-semibold'>{user?.name}</p>
-          <p className='text-sm'>{user?.role}</p>
+          <p className='text-base text-slate-500'>{user?.role}</p>
 
        </div>
 
        <div className=''>
-        <nav className='flex flex-col gap-1 p-4 '>
+        <nav className='flex flex-col gap-1 p-4 mt-8 '>
                
                <Link to={"all-users"} className='px-2 py-1 hover:bg-slate-200'> All users</Link>
                <Link to={"all-products"} className='px-2 py-1  hover:bg-slate-200'> product</Link>

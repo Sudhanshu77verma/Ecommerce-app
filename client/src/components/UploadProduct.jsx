@@ -5,7 +5,7 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import uploadImage from "../helpers/uploadimage";
 import { toast } from "react-toastify";
 
-function UploadProduct({ onclose }) {
+function UploadProduct({ onclose,fetchProduct }) {
   const [data, setdata] = useState({
     productName: "",
     brandName: "",
@@ -42,6 +42,7 @@ function UploadProduct({ onclose }) {
     if(ResponseData.success)
       {
         toast.success(ResponseData.message)
+        fetchProduct()
         onclose()
       }
   };
@@ -61,6 +62,8 @@ function UploadProduct({ onclose }) {
         productImage: [...prev.productImage, uploadImageCloudinary.url],
       };
     });
+
+    
   };
   return (
     <div className="fixed bg-slate-200 bg-opacity-45 w-full h-full top-0 bottom-0 left-0 right-0 flex justify-center items-center">
@@ -182,7 +185,7 @@ function UploadProduct({ onclose }) {
           <button className=" mt-5 pb-5 w-full  bg-red-500 h-10 text-center text-white font-semibold hover:bg-red-700 hover:scale-90 hover:text-black transition-all duration-200 text-xl rounded-full pt-1 ">
             Upload Product
           </button>
-          
+
         </form>
       </div>
     </div>
