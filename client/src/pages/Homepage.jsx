@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import CategoryList from '../components/CategoryList'
 
 function Homepage() {
+ 
   return (
-    <div>Homepage</div>
+    <div >
+
+      <CategoryList></CategoryList>
+
+
+
+    </div>
   )
 }
 

@@ -80,3 +80,32 @@ export const updateProduct= async(req,res,next)=>{
         next(error)
     }
 }
+
+export const getCategoryProduct =async(req,res,next)=>{
+    try {
+      
+        const productCategory= await Product.distinct("category")
+        // console.log(productCategory)
+
+      const productOneCategory =[]
+
+      for(let category of productCategory)
+        {
+            const product= await Product.findOne({category})
+            if(product)
+                {
+                    productOneCategory.push(product)
+                    // console.log(productOneCategory)
+                }
+        }
+        res.status(200).json({
+            success:true,
+            message:"category product",
+            data:productOneCategory,
+            error:false
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+

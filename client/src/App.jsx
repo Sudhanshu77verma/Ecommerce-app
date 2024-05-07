@@ -12,6 +12,7 @@ import AdminPanel from './pages/AdminPanel.jsx'
 import Context from './context/index.js'
 import AllUser from './pages/AllUser.jsx'
 import AllProduct from './pages/AllProduct.jsx'
+import CategoryProduct from './pages/CategoryProduct.jsx'
 export default function App() {
  
 
@@ -47,7 +48,9 @@ export default function App() {
         <Route path='all-users' element={<AllUser></AllUser>}></Route>
         <Route path='all-products' element={<AllProduct></AllProduct>}></Route>
          </Route>
+      
 
+      <Route path='/category-product/:categoryName' element={<CategoryProduct></CategoryProduct>}></Route>
       </Routes>
       </main>
   
