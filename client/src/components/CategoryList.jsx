@@ -50,12 +50,12 @@ function CategoryList() {
 {
     categoryProduct.map((product,index)=>{
         return (
-          <Link to={`/category-product/${product.category}`}>
-             <div key={index} >
+          <Link to={`/category-product/${product.category} `} key={index} >
+             <div >
              
-             <div className='w-16 h-16 md:w-20 md:h-20  rounded-full overflow-hidden flex items-center justify-center bg-white'>
+             <div className='w-14 h-14 md:w-20 md:h-20  rounded-full overflow-hidden flex items-center justify-center bg-slate-300'>
                 <img src={product.productImage[0]} alt={product.category}
-                className='h-full object-fill'/>
+                className='h-full object-scale-down mix-blend-multiply hover:scale-125 transition-all duration-200 '/>
              </div>
              
              <div>

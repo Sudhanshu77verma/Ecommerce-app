@@ -109,3 +109,45 @@ export const getCategoryProduct =async(req,res,next)=>{
     }
 }
 
+
+export const getCategoryWiseProduct= async(req,res,next)=>{
+    try {
+        const {category} = req.body || req.query
+        const product= await Product.find({category})
+         
+        res.status(200).json({
+            data:product,
+            message:"category wise product",
+            success:true,
+            error:false
+        })
+
+
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+
+export const productDetail = async(req,res,next)=>{
+    
+const id= req.params.productId
+
+const product= await Product.findById(id)
+
+
+res.status(200).json({
+    success:true,
+    message:"Product Details ",
+    error:false,
+    data:product
+})
+
+
+
+
+
+}
+

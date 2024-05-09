@@ -25,7 +25,7 @@ dispatch(setuserDetails(null))
   }
 }
   return (
-    <div className="h-16 shadow-lg bg-white">
+    <div className="h-16 shadow-lg bg-white w-full fixed z-30">
       <div className="h-full container mx-auto flex items-center justify-between px-4  ">
         <div className="">
           <Link to={"/"}>
