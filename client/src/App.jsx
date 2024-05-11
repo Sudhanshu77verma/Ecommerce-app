@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Route,Routes} from 'react-router-dom'
 
 import Homepage from './pages/Homepage.jsx'
@@ -14,27 +14,46 @@ import AllUser from './pages/AllUser.jsx'
 import AllProduct from './pages/AllProduct.jsx'
 import CategoryProduct from './pages/CategoryProduct.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
+import { useEffect } from 'react'
 export default function App() {
  
+  const [countcart,setcountcart]=useState(0)
 
+  const fetchuserDetails=async()=>{
+      const res =await fetch('/api/user/userDetails');
+      const data = await res.json()
+      console.log(data)
+  } 
 
-  // const fetchuserDetails=async()=>{
-  //     const res =await fetch('/api/user/userDetails');
-  //     const data = await res.json()
-  //     console.log(data)
-  // } 
+  const fetchcount=async ()=>{
+   const res= await fetch('/api/cart/countcart')
+    const resdata= await res.json()
 
-  // useEffect(()=>{
-  // fetchuserDetails()
-  // },[])
+    if(resdata.success)
+     {  
+        console.log("count",resdata.data)
+       setcountcart(resdata.data)
+     }
+ }  
+
+      
+  useEffect(()=>{
+  fetchuserDetails()
+  fetchcount()
+  },[])
+
+  
+
   return (
 
   
    <div>
   <BrowserRouter>
-   {/* <Context.Provider value={{
-   fetchuserDetails 
-   }}> */}
+   <Context.Provider value={{
+   fetchuserDetails ,
+   countcart,
+   fetchcount,
+   }}>
 
 
       <Header></Header>
@@ -60,7 +79,7 @@ export default function App() {
   
    
 
-   {/* </Context.Provider> */}
+   </Context.Provider>
 
    </BrowserRouter>
      </div>

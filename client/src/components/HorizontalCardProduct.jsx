@@ -3,12 +3,14 @@ import fetchcategorywiseprodcut from "../helpers/fetchCategorywiseProduct";
 import displayCurrency from "../helpers/Displaycurrency";
 import { Link } from "react-router-dom";
 import addtocart from "../helpers/AddToCart";
+import { useContext } from "react";
+import Context from "../context";
 
 function HorizontalCardProduct({ category, heading }) {
   const [data, setdata] = useState([]);
   console.log("data ", data);
   const [loading, setloading] = useState(false);
-
+  const {fetchcount} =useContext(Context)
   const fetchdata = async () => {
     setloading(true);
     const categoryProduct = await fetchcategorywiseprodcut(category);
@@ -49,7 +51,7 @@ function HorizontalCardProduct({ category, heading }) {
                 <p className="text-slate-500 line-through">{displayCurrency(product.price)}</p>
               </div>
 
-              <button onClick={(e)=>addtocart(e,product._id)} className= " text-sm bg-red-500 hover:bg-red-800 text-white py-1 px-0.5 rounded-full">Add to Cart</button>
+              <button onClick={(e)=>addtocart(e,product._id,fetchcount)} className= " text-sm bg-red-500 hover:bg-red-800 text-white py-1 px-0.5 rounded-full">Add to Cart</button>
               </div>
             </div>
             </Link>

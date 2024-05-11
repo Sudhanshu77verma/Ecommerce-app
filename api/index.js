@@ -4,6 +4,11 @@ import dotenv from "dotenv"
 import userRouter from './routes/user.route.js'
 import cookieParser from 'cookie-parser'
 import productRoute from './routes/product.route.js'
+
+import cartRoute from './routes/cart.route.js'
+
+
+
 dotenv.config()
 mongoose.connect(process.env.MONGO).then(()=>
 {
@@ -26,7 +31,7 @@ mongoose.connect(process.env.MONGO).then(()=>
 
 app.use('/api/user',userRouter)
 app.use('/api/product',productRoute)
-
+app.use('/api/cart',cartRoute)
 
 
 

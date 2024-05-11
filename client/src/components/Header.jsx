@@ -1,6 +1,6 @@
 
 
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
@@ -9,11 +9,14 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { setuserDetails } from "../store/userslice";
 import ROLE from "../common/role";
+import Context from "../context";
 
 function Header() {
-
-  const user = useSelector(state=>state.user.user)
+   const user = useSelector(state=>state.user.user)
   const [display,setdisplay]= useState(false)
+   const {countcart} =useContext(Context)
+   console.log("countcart",countcart)
+
   const dispatch= useDispatch()
 const handlelogout= async()=>{
   const res= await fetch('/api/user/userlogout')
@@ -24,6 +27,9 @@ const handlelogout= async()=>{
 dispatch(setuserDetails(null))
   }
 }
+
+
+
   return (
     <div className="h-16 shadow-lg bg-white w-full fixed z-30">
       <div className="h-full container mx-auto flex items-center justify-between px-4  ">
@@ -87,9 +93,17 @@ dispatch(setuserDetails(null))
 
                 <div className="text-3xl relative">
                   <FaShoppingCart></FaShoppingCart>
-                  <div className="bg-red-500 text-white w-5 h-5 p-1 flex items-center justify-center rounded-full absolute top-[-10px] right-[-10px]">
-                    <p className="text-xs">0</p>
+                  
+           {
+            user?._id && (
+              <div className="bg-red-500 text-white w-5 h-5 p-1 flex items-center justify-center rounded-full absolute top-[-10px] right-[-10px]">
+                    <p className="text-xs">{countcart}</p>
                   </div>
+            )
+           }           
+
+
+
                   </div>
                <div>
                 {
