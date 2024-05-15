@@ -151,3 +151,40 @@ res.status(200).json({
 
 }
 
+
+
+export const searchproduct =async(req,res,next)=>{
+    try {
+           
+        const query = req.query.q;
+        // console.log(query)
+     
+
+const regex = new RegExp(query,"i","g")
+
+const product = await Product.find({
+    "$or" : [
+        {
+            productName:regex
+        }, 
+        {
+            category:regex
+        }
+    ]
+})
+
+
+
+res.json({
+    data:product,
+    message:"Search product list",
+    success:true,
+    error:false,
+})
+
+
+
+    } catch (error) {
+        next(error)
+    }
+}

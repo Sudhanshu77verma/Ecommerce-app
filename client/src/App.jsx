@@ -15,6 +15,8 @@ import AllProduct from './pages/AllProduct.jsx'
 import CategoryProduct from './pages/CategoryProduct.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
 import { useEffect } from 'react'
+import Cart from './pages/Cart.jsx'
+import SearchPage from './pages/SearchPage.jsx'
 export default function App() {
  
   const [countcart,setcountcart]=useState(0)
@@ -74,6 +76,12 @@ export default function App() {
       
 
       <Route path='/category-product/:categoryName' element={<CategoryProduct></CategoryProduct>}></Route>
+     
+     <Route path='/cart' element={<Cart></Cart>}></Route>
+
+
+  <Route path='/search' element={<SearchPage></SearchPage>}></Route>
+
       </Routes>
       </main>
   

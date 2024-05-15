@@ -14,6 +14,8 @@ function Login() {
   const [formdata, setformdata] = useState({ email: "", password: "" });
   console.log(formdata);
 
+  const {fetchcount} = useContext(Context)
+  console.log(fetchcount)
 
   // const {fetchuserDetails}= useContext(Context)
   const handleOnchange = (e) =>
@@ -43,6 +45,7 @@ function Login() {
       navigate('/')
       dispatch(setuserDetails(data))
       // fetchuserDetails()
+      fetchcount()
     }
   };
   return (

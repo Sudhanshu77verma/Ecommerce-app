@@ -4,6 +4,7 @@ import { userDetails } from "../controllers/userDetail.controller.js"
 import { verifyToken } from "../middlewares/VerifyToken.js"
 import { alluser, signout } from "../controllers/user.controller.js"
 import { updateUser } from "../controllers/updateuser.js"
+
  
 
 const router= express.Router()

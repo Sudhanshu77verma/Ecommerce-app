@@ -5,7 +5,6 @@ export const addtocart =async(req,res,next)=>{
    
     try { 
             const currentUser= req.userId
-
         const {productId}=req.body;
    console.log(productId)
         const isProductAvailable = await Cart.findOne({productId})
@@ -79,9 +78,9 @@ export const addtocartviewProduct= async(req,res,next)=>{
     try {
           const currentuser= req.userId
 
-          const allproduct= await addtocart.find({
+          const allproduct= await Cart.find({
             userId:currentuser
-          })
+          }).populate("productId")
 
           res.json({
             success:true,
@@ -90,5 +89,33 @@ export const addtocartviewProduct= async(req,res,next)=>{
           })
     } catch (error) {
         next(error)
+    }
+}
+
+export const updateaddtocart = async(req,res,next)=>{
+    try { 
+        const currentuser= req.userId
+        const addtocartproductId= req.body._id
+        const qty = req.body.quantity
+
+        const updatedqty = await Cart.findByIdAndUpdate(addtocartproductId , 
+            {
+                $set:{
+                     quantity:qty
+                }
+            }, {new:true}
+        )
+         
+
+   res.status(200).json({
+    success:true,
+    error:false,
+    message:"Product updated successfully",
+    data:updatedqty
+   })
+
+    } catch (error) {
+        next(error)
+        
     }
 }
