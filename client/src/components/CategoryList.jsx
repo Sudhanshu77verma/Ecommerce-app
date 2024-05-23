@@ -50,7 +50,7 @@ function CategoryList() {
 {
     categoryProduct.map((product,index)=>{
         return (
-          <Link to={`/category-product/${product.category} `} key={index} >
+          <Link to={`/category-product`} key={index} >
              <div >
              
              <div className='w-14 h-14 md:w-20 md:h-20  rounded-full overflow-hidden flex items-center justify-center bg-slate-300'>

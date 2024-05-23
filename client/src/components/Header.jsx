@@ -3,7 +3,7 @@ import { CiSearch } from "react-icons/ci";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import { toast } from "react-toastify";
 import { setuserDetails } from "../store/userslice";
 import ROLE from "../common/role";
@@ -14,7 +14,10 @@ function Header() {
   const [display, setdisplay] = useState(false);
   const { countcart } = useContext(Context);
   console.log("countcart", countcart);
-
+  const searchterm = useLocation()
+  console.log("searchterm" ,searchterm?.search?.split('=')[1])
+  const [search,setsearch] =useState(searchterm?.search?.split('=')[1])
+  const navigate =useNavigate();
   const dispatch = useDispatch();
   const handlelogout = async () => {
     const res = await fetch("/api/user/userlogout");
@@ -22,12 +25,14 @@ function Header() {
     if (data.success) {
       toast.success(data.message);
       dispatch(setuserDetails(null));
+      navigate('/')
     }
   };
-  const navigate =useNavigate();
+ 
   const handlesearch = (e)=> {
        
     const {value } =e.target
+    setsearch(value)
     if(value)
       {
         navigate(`/search?q=${value}`)
@@ -57,7 +62,8 @@ function Header() {
             placeholder="Search Product here..."
             id=""
             required
-            onChange={handlesearch}
+            onChange={handlesearch} 
+            value={search}
             color="green"
           ></input>
 

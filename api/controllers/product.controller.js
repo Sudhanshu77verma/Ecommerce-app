@@ -67,6 +67,7 @@ export const updateProduct= async(req,res,next)=>{
           price: req.body.price,
           sellingPrice: req.body.sellingPrice,
         }
+
     }, { new:true }
   )
   res.status(200).json({
@@ -186,5 +187,18 @@ res.json({
 
     } catch (error) {
         next(error)
+    }
+}
+
+
+
+export const filterProduct =async(req,res,next)=>{
+    try {
+           
+
+
+        
+    } catch (error) {
+        console.log(error)
     }
 }

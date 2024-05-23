@@ -75,7 +75,7 @@ export default function App() {
          </Route>
       
 
-      <Route path='/category-product/:categoryName' element={<CategoryProduct></CategoryProduct>}></Route>
+      <Route path='/category-product' element={<CategoryProduct></CategoryProduct>}></Route>
      
      <Route path='/cart' element={<Cart></Cart>}></Route>
 
