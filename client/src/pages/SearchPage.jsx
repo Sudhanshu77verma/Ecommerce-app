@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import VerticalCardProduct from '../components/VertcalCardProduct'
+
+import Allproductcart from '../components/AllproductsinSearch'
 function SearchPage() {
     const query =useLocation()
     const [data,setdata] =useState([])
@@ -46,7 +47,7 @@ function SearchPage() {
 
       {
         data.length !== 0 && !loading && (
-          <VerticalCardProduct data={data}></VerticalCardProduct>
+          <Allproductcart data={data}></Allproductcart>
         )
       }
 

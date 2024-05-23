@@ -6,9 +6,9 @@ export const addtocart =async(req,res,next)=>{
     try { 
             const currentUser= req.userId
         const {productId}=req.body;
-   console.log(productId)
+//    console.log(productId)
         const isProductAvailable = await Cart.findOne({productId})
-  console.log(isProductAvailable)
+//   console.log(isProductAvailable)
 
         if(isProductAvailable)
             {
