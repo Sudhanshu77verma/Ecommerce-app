@@ -1,13 +1,15 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaStar, FaStarHalfStroke } from 'react-icons/fa6';
 import { useParams } from 'react-router-dom'
 import displayCurrency from '../helpers/Displaycurrency';
 import VerticalCardProduct from '../components/VertcalCardProduct';
 import CategoryWiseproduct from '../components/CategoryWiseProduct';
+import addtocart from '../helpers/AddToCart';
+import Context from '../context';
 
 function ProductDetail() {
-   
+    const {fetchcount} =useContext(Context)
     const [loading,setloading] =useState(false)
     const {productId} =useParams()
     const [data, setdata] = useState({
@@ -102,7 +104,7 @@ console.log(data)
      
      <p className='text-red-500 bg-red-200 px-2 rounded-full'>{data.brandName}</p>
 
-     <div> <p className='font-semibold text-3xl '>{data.productName}</p></div>
+     <div> <p className='font-semibold text-3xl capitalize '>{data.productName}</p></div>
       
       <div> 
         <p className='uppercase text-slate-400'>{data.category}</p>
@@ -127,11 +129,9 @@ console.log(data)
    
       
 
-      <div className='flex gap-3'>
+      <div className=''>
 
-        <button className= ' w-28 h-8  text-red-500 border border-red-600 hover:bg-red-500 hover:text-white rounded-full '>Buy</button>
-
-        <button className= 'w-32 text-white bg-red-500 hover:bg-red-800 rounded-full '>Add to Cart</button>
+      <button onClick={(e)=>addtocart(e,data._id,fetchcount)} className= "  text-sm bg-red-500 w-32 h-10 rounded-full hover:bg-red-800 text-white  ">Add to Cart</button>
       </div>
 
 

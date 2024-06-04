@@ -13,7 +13,7 @@ function Header() {
   const user = useSelector((state) => state.user.user);
   const [display, setdisplay] = useState(false);
   const { countcart } = useContext(Context);
-  console.log("countcart", countcart);
+  // console.log("countcart", countcart);
   const searchterm = useLocation()
   console.log("searchterm" ,searchterm?.search?.split('=')[1])
   const [search,setsearch] =useState(searchterm?.search?.split('=')[1])

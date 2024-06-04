@@ -11,12 +11,12 @@ function CategoryProduct() {
 const [loading,setloading] =useState(false)
   const [data, setdata] = useState([]);
 
-  console.log("data is " , data)
+  // console.log("data is " , data)
   const [sidebardata, setsidebardata] = useState({ sort: "", category: "" });
-  console.log(sidebardata);
+  // console.log(sidebardata);
 
   const handlechange = (e) => {
-    const { id, value } = e.target;
+   
     if (e.target.name === "sort") {
       console.log(e.target);
       setsidebardata({ ...sidebardata, [e.target.name]: e.target.value });
@@ -24,22 +24,23 @@ const [loading,setloading] =useState(false)
     if (e.target.id === "category") {
       setsidebardata({ ...sidebardata, [e.target.id]: e.target.value });
     }
+
   };
-  console.log(location.search);
+
   const handlesubmit = (e) => {
+
     e.preventDefault();
     const urlparams = new URLSearchParams(location.search);
-
     const sort = urlparams.set("sort", sidebardata.sort);
     const category = urlparams.set("category", sidebardata.category);
     const searchQuery = urlparams.toString();
     navigate(`/category-product?${searchQuery}`);
+
   };
 
   useEffect(() => {
 
     const urlparams = new URLSearchParams(window.location.search);
-    console.log(URLSearchParams)
     const sort = urlparams.get("sort");
     const category = urlparams.get("category");
 
@@ -68,7 +69,7 @@ const [loading,setloading] =useState(false)
     <div className="container mx-auto px-4">
       <div className=" flex flex-col  md:flex-row  ">
         {/* left side */}
-        <div className="bg-white w-full md:w-64 p-2 min-h-[calc(100vh)]  overflow-y-scroll scrollbar-none  ">
+        <div className="bg-white w-full md:w-64 p-2 min-h-[calc(50vh)]  overflow-y-scroll scrollbar-none  ">
           <div>
             <h1 className="text-xl uppercase font-medium text-slate-400 border-b-2 pb-1 ">
               Sort By

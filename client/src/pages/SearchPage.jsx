@@ -6,8 +6,8 @@ function SearchPage() {
     const query =useLocation()
     const [data,setdata] =useState([])
     const [loading ,setloading] =useState(false)
-    console.log(data)
-    console.log(query.search)
+    // console.log(data)
+    // console.log(query.search)
   
     const fetchproduct =async()=>{
       setloading(true)

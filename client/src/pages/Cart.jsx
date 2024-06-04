@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Context from '../context'
 import displayCurrency from '../helpers/Displaycurrency'
 import { MdDelete } from 'react-icons/md'
+import {toast} from "react-toastify"
 
 function Cart() {
   
@@ -11,8 +12,6 @@ function Cart() {
   const {countcart,  fetchcount,} = useContext(Context)
   const loadingcart= new Array(countcart).fill(null)
   
-  
-
 
   const totalqty =data.reduce((prevvalue,currentvalue) => prevvalue+currentvalue.quantity,0)
   console.log(totalqty)
@@ -103,6 +102,80 @@ fetchCardProduct()
   
   }
  const price =data.reduce((prev,currentvalue)=>prev + (currentvalue.quantity * currentvalue.productId.sellingPrice),0)
+ 
+ 
+  const handlepayment= async(amount)=>{
+  //  console.log(amount)
+
+   try {
+
+    const res= await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/order`, {
+      method:"POST",
+     headers:{
+      "content-type" : "application/json",
+     },
+     body:JSON.stringify({
+      amount
+     })
+    })
+
+    const data= await res.json()
+    console.log(data.data)
+    handlepaymentverify(data.data)
+   } catch (error) {
+    console.log(error)
+   }
+  }
+
+ const handlepaymentverify= async(data)=>{
+  console.log("called")
+  const options={
+    key:import.meta.env.VITE_RAZORPAY_API_KEY,
+    amount:data.amount,
+    currency:data.currency,
+    name:"sudhanshu",
+    description:"test ",
+    order_id:data.id,
+
+    handler: async(response)=>{
+      console.log("response " , response)
+      try {
+ const res= await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/verify`,{
+ method:"POST",
+ headers:{
+  "content-type" : "application/json",
+ },
+ body:JSON.stringify({
+  razorpay_order_id : response.razorpay_order_id,
+  razorpay_payment_id :response.razorpay_payment_id,
+  razorpay_signature:response.razorpay_signature
+ })
+     }
+
+ )
+
+
+ const verifydata=await res.json()
+ if(verifydata.success)
+  {
+    toast.success(verifydata.message)
+  }
+  else {
+    toast.error("Something went wrong")
+  }
+      } catch (error) {
+        
+      }
+    },
+    theme:{
+      color:'#5f63b8',
+    }
+  }
+
+  const razor= new window.Razorpay(options);
+  razor.open()
+ }
+
   return (
     <div>
      
@@ -188,9 +261,9 @@ data.length === 0 && !loading && (
 
   {/* total products  */}
   
-<div className='mt-5 md:mt-0 w-full max-w-sm'>
+<div className='mt-5 md:mt-0 w-full '>
 {
-    loading ? ( <div className='h-36 bg-slate-200 border border-slate-300 animate-pulse '>
+    loading ? ( <div className='h-52 bg-slate-200 border border-slate-300 animate-pulse '>
      
   </div>):( <div className='h-36 bg-white'>
    
@@ -207,7 +280,7 @@ data.length === 0 && !loading && (
    </div>
 
 
-    <button className=' mt-4 text-xl bg-blue-400 w-full'>Payment</button>
+    <button className=' mt-4 text-xl bg-blue-400 w-full' onClick={()=>handlepayment(price)} >Payment</button>
 
   </div>)
  }
